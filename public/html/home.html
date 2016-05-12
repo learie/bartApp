@@ -1,25 +1,29 @@
 <div class="container maxh">
-<h2>Montgomery</h2>
 
-<div class="row">
-	<div class="col-xs-4"><nvd3 options="options" data="data.mont.A"></nvd3></div>
-	<div class="col-xs-4"><nvd3 options="options" data="data.mont.B"></nvd3></div>
-	<div class="col-xs-4"><nvd3 options="options" data="data.mont.C"></nvd3></div>
-</div>
+	<h2>Montgomery</h2>
+	<h4 ng-show="nextTrain.MONT">Next Train: Headed to {{nextTrain.MONT.train}}, will be arriving in {{nextTrain.MONT.estimate}}</h4>
 
-<h2>Embarcadero</h2>
+	<div class="row">
+		<div class="col-xs-4"><nvd3 options="options" data="data.mont.A"></nvd3></div>
+		<div class="col-xs-4"><nvd3 options="options" data="data.mont.B"></nvd3></div>
+		<div class="col-xs-4"><nvd3 options="options" data="data.mont.C"></nvd3></div>
+	</div>
 
-<div class="row">
-	<div class="col-xs-4"><nvd3 options="options" data="data.emba.A"></nvd3></div>
-	<div class="col-xs-4"><nvd3 options="options" data="data.emba.B"></nvd3></div>
-	<div class="col-xs-4"><nvd3 options="options" data="data.emba.C"></nvd3></div>
-</div>
+	<h2>Embarcadero</h2>
+	<h4 ng-show="nextTrain.EMBR">Next Train: Headed to {{nextTrain.EMBR.train}}, will be arriving in {{nextTrain.EMBR.estimate}}</h4>
 
-<h2>West Oakland</h2>
+	<div class="row">
+		<div class="col-xs-4"><nvd3 options="options" data="data.emba.A"></nvd3></div>
+		<div class="col-xs-4"><nvd3 options="options" data="data.emba.B"></nvd3></div>
+		<div class="col-xs-4"><nvd3 options="options" data="data.emba.C"></nvd3></div>
+	</div>
 
-<div class="row">
-	<div class="col-xs-4"><nvd3 options="options" data="data.west.A"></nvd3></div>
-	<div class="col-xs-4"><nvd3 options="options" data="data.west.B"></nvd3></div>
-	<div class="col-xs-4"><nvd3 options="options" data="data.west.C"></nvd3></div>
-</div>
+	<h2>West Oakland</h2>
+	<h4 ng-show="nextTrain.WOAK">Next Train: Headed to {{nextTrain.WOAK.train}}, will be arriving in {{nextTrain.WOAK.estimate}}</h4>
+	
+	<div class="row">
+		<div class="col-xs-4"><nvd3 options="options" data="data.west.A"></nvd3></div>
+		<div class="col-xs-4"><nvd3 options="options" data="data.west.B"></nvd3></div>
+		<div class="col-xs-4"><nvd3 options="options" data="data.west.C"></nvd3></div>
+	</div>
 </div>

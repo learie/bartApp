@@ -10,11 +10,26 @@
 		// $scope.$on("socket:bartdata", function(ev, data){
 
 		// })
-
+		$scope.nextTrain = {
+			MONT: undefined,
+			EMBR: undefined,
+			WOAK: undefined
+		};
+		
 		mySocket.emit('hello');
 
 		mySocket.on('bartdata', function(data){
-			console.log(data);
+			// console.log(data);
+			var station = data.root.station.abbr;
+			var train = {
+				train: data.root.station.etd[0].destination,
+				estimate: data.root.station.etd[0].estimate[0].minutes
+			}
+
+			$scope.nextTrain[station] = train;
+
+			console.log('train: ', train)
+			console.log('data: ', data)
 
 		})
 
