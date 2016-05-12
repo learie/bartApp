@@ -64,7 +64,7 @@ io.on('connection', function(clientSocket) {
     });
   }, 6000);
 
-  function openPredixSocket(assetNum, url, auth, zone) {
+  function openPredixSocket(assetNum, stationName, url, auth, zone) {
     request({
       url: url,
       headers: {
@@ -72,6 +72,7 @@ io.on('connection', function(clientSocket) {
         "predix-zone-id": zone
       }
     }, function(err, resp, body){
+      if (err || !body) return;
       wsurl = JSON.parse(body).url;
       console.log(wsurl)
 
@@ -93,7 +94,7 @@ io.on('connection', function(clientSocket) {
         // console.log('Oakland: ' + data.measures[0].value + ' ' + eventType);
 
         clientSocket.emit('predix', {
-          station: assetNum,
+          station: stationName,
           people: data.measures[0].value,
           eventType: eventType
         });
@@ -104,9 +105,9 @@ io.on('connection', function(clientSocket) {
   var asset27url = 'https://ie-pedestrian.run.aws-usw02-pr.ice.predix.io/v1/assets/1000000027/live-events?event-types=SFIN,SFOUT';
   var asset28url = 'https://ie-pedestrian.run.aws-usw02-pr.ice.predix.io/v1/assets/1000000028/live-events?event-types=SFIN,SFOUT';
   var asset29url = 'https://ie-pedestrian.run.aws-usw02-pr.ice.predix.io/v1/assets/1000000029/live-events?event-types=SFIN,SFOUT';
-  openPredixSocket('asset 27', asset27url, auth, zone);
-  openPredixSocket('asset 28', asset28url, auth, zone);
-  openPredixSocket('asset 29', asset29url, auth, zone);
+  openPredixSocket('asset 27', 'mont', asset27url, auth, zone);
+  openPredixSocket('asset 28', 'emba', asset28url, auth, zone);
+  openPredixSocket('asset 29', 'west', asset29url, auth, zone);
 
 
 
