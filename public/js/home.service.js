@@ -9,45 +9,116 @@
 
 	function MainService($http){
 		this.data = {
-			mont: [
-				{
-					key: "Passengers",
-					y: 10
-				},{
-					key: "",
-					y: 90
+			mont: {
+					A: [
+						{
+							key: "Passengers",
+							y: 40
+						},{
+							key: "",
+							y: 60
+						}
+					],
+					B: [
+						{
+							key: "Passengers",
+							y: 40
+						},{
+							key: "",
+							y: 60
+						}
+					],
+					C: [
+						{
+							key: "Passengers",
+							y: 40
+						},{
+							key: "",
+							y: 60
+						}
+					]
+				},
+			emba: {
+					A: [
+						{
+							key: "Passengers",
+							y: 40
+						},{
+							key: "",
+							y: 60
+						}
+					],
+					B: [
+						{
+							key: "Passengers",
+							y: 40
+						},{
+							key: "",
+							y: 60
+						}
+					],
+					C: [
+						{
+							key: "Passengers",
+							y:40
+						},{
+							key: "",
+							y: 60
+						}
+					]
+				},
+			west: {
+					A: [
+						{
+							key: "Passengers",
+							y: 40
+						},{
+							key: "",
+							y: 60
+						}
+					],
+					B: [
+						{
+							key: "Passengers",
+							y: 40
+						},{
+							key: "",
+							y: 60
+						}
+					],
+					C: [
+						{
+							key: "Passengers",
+							y: 40
+						},{
+							key: "",
+							y: 60
+						}
+					]
 				}
-			],
-			emba: [
-				{
-					key: "Passengers",
-					y: 10
-				},{
-					key: "",
-					y: 90
-				}
-			],
-			west: [
-				{
-					key: "Passengers",
-					y: 10
-				},{
-					key: "",
-					y: 90
-				}
-			]
 		}
 
-		// this.data.mont = 10;
-		// this.data.emba = 10;
-		// this.data.west = 10;
 		this.updatePredix = (data) => {
+			var pushees = {
+				A: Math.floor(data.people * Math.random() + 5),
+				B: Math.floor(data.people * Math.random() - 5),
+				C: Math.floor(data.people * Math.random() + 5)
+			}
 			if(data.eventType === 'Entering'){
-				this.data[data.station][0].y += data.people;
-				this.data[data.station][1].y -= data.people;
+				if(this.data[data.station].A[0].y)
+				this.data[data.station].A[0].y += pushees.A;
+				this.data[data.station].A[1].y -= pushees.A;
+				this.data[data.station].B[0].y += pushees.B;
+				this.data[data.station].B[1].y -= pushees.B;
+				this.data[data.station].C[0].y += pushees.C;
+				this.data[data.station].C[1].y -= pushees.C;
 			} else{
-				this.data[data.station][0].y -= data.people;
-				this.data[data.station][1].y += data.people;
+				this.data[data.station].A[0].y -= pushees.A;
+				this.data[data.station].A[1].y += pushees.A;
+				this.data[data.station].B[0].y -= pushees.B;
+				this.data[data.station].B[1].y += pushees.B;
+				this.data[data.station].C[0].y -= pushees.C;
+				this.data[data.station].C[1].y += pushees.C;
 			}
 			
 		}
