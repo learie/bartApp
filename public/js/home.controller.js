@@ -3,9 +3,9 @@
 		.module('bartApp')
 		.controller('HomeController', HomeController)
 
-	HomeController.$inject = ['$scope', 'mySocket'];
+	HomeController.$inject = ['$scope', 'mySocket', 'MainService'];
 
-	function HomeController($scope, mySocket){
+	function HomeController($scope, mySocket, MainService){
 
 		// $scope.$on("socket:bartdata", function(ev, data){
 
@@ -15,11 +15,18 @@
 
 		mySocket.on('bartdata', function(data){
 			console.log(data);
+
 		})
 
 		mySocket.on('predix', function(data){
 			console.log(data);
+			MainService.updatePredix(data);
+			updateGraph();
 		})
+
+		function updateGraph(){
+			$scope.data = MainService.data;
+		}
 
 		$scope.options = {
             chart: {
@@ -27,7 +34,7 @@
                 height: 500,
                 x: function(d){return d.key;},
                 y: function(d){return d.y;},
-                showLabels: true,
+                showLabels: false,
                 duration: 500,
                 labelThreshold: 0.01,
                 labelSunbeamLayout: true,
@@ -41,37 +48,7 @@
                 }
             }
         };
-
-        $scope.data = [
-            {
-                key: "One",
-                y: 5
-            },
-            {
-                key: "Two",
-                y: 2
-            },
-            {
-                key: "Three",
-                y: 9
-            },
-            {
-                key: "Four",
-                y: 7
-            },
-            {
-                key: "Five",
-                y: 4
-            },
-            {
-                key: "Six",
-                y: 3
-            },
-            {
-                key: "Seven",
-                y: .5
-            }
-        ];
+        $scope.data = MainService.data;
 	}
 
 

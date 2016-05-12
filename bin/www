@@ -98,7 +98,7 @@ io.on('connection', function(clientSocket) {
           eventType: eventType
         });
       })
-    })
+    });
   }
 
   var asset27url = 'https://ie-pedestrian.run.aws-usw02-pr.ice.predix.io/v1/assets/1000000027/live-events?event-types=SFIN,SFOUT';
@@ -107,6 +107,7 @@ io.on('connection', function(clientSocket) {
   openPredixSocket('asset 27', asset27url, auth, zone);
   openPredixSocket('asset 28', asset28url, auth, zone);
   openPredixSocket('asset 29', asset29url, auth, zone);
+
 
 
 });
