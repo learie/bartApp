@@ -100,70 +100,83 @@ io.on('connection', function(clientSocket) {
       });
     })
   })
+
+  request({
+    url: 'https://ie-pedestrian.run.aws-usw02-pr.ice.predix.io/v1/assets/1000000028/live-events?event-types=SFIN,SFOUT',
+    method: 'GET',
+    headers: {
+      "authorization": auth,
+      "predix-zone-id": zone
+    }
+  }, function(err, resp, body){
+    wsurl = JSON.parse(body).url;
+    console.log(wsurl)
+
+    var headers = {
+      "authorization": auth,
+      "predix-zone-id": zone,
+      "origin": "https://www.predix.io"
+    };
+
+    var predixSocket = new WebSocket(wsurl, {headers: headers});
+
+    predixSocket.on('open', function(){
+      console.log('socket open, asset 28');
+    })
+
+    predixSocket.on('message', function(data){
+      var data = JSON.parse(data);
+      var eventType = data["event-type"] == 'SFIN' ? 'Entering' : 'Exiting';
+      // console.log('Embarcadero: ' + data.measures[0].value + ' ' + eventType);
+
+      clientSocket.emit('predix', {
+        station: 'Embarcadero',
+        people: data.measures[0].value,
+        eventType: eventType
+      });
+    })
+  })
+
+  request({
+    url: 'https://ie-pedestrian.run.aws-usw02-pr.ice.predix.io/v1/assets/1000000029/live-events?event-types=SFIN,SFOUT',
+    method: 'GET',
+    headers: {
+      "authorization": auth,
+      "predix-zone-id": zone
+    }
+  }, function(err, resp, body){
+    wsurl = JSON.parse(body).url;
+    console.log(wsurl)
+
+    var headers = {
+    "authorization": auth,
+    "predix-zone-id": zone,
+    "origin": "https://www.predix.io"
+    };
+
+    var predixSocket = new WebSocket(wsurl, {headers: headers});
+
+    predixSocket.on('open', function(){
+      console.log('socket open, asset 29');
+    })
+
+    predixSocket.on('message', function(data){
+      var data = JSON.parse(data);
+      var eventType = data["event-type"] == 'SFIN' ? 'Entering' : 'Exiting';
+      // console.log('Oakland: ' + data.measures[0].value + ' ' + eventType);
+
+      clientSocket.emit('predix', {
+        station: 'Oakland',
+        people: data.measures[0].value,
+        eventType: eventType
+      });
+    })
+  })
+
 });
 
 
 
-//
-// request({
-//   url: 'https://ie-pedestrian.run.aws-usw02-pr.ice.predix.io/v1/assets/1000000028/live-events?event-types=SFIN,SFOUT',
-//   method: 'GET',
-//   headers: {
-//     "authorization": auth,
-//     "predix-zone-id": zone
-//   }
-// }, function(err, resp, body){
-//   wsurl = JSON.parse(body).url;
-//   console.log(wsurl)
-//
-//   var headers = {
-//   "authorization": auth,
-//   "predix-zone-id": zone,
-//   "origin": "https://www.predix.io"
-//   };
-//
-//   var socket = new WebSocket(wsurl, {headers: headers});
-//
-//   socket.on('open', function(){
-//     console.log('socket open, asset 28');
-//   })
-//
-//   socket.on('message', function(data){
-//     var data = JSON.parse(data);
-//     var eventType = data["event-type"] == 'SFIN' ? 'Entering' : 'Exiting';
-//     console.log('Embarcadero: ' + data.measures[0].value + ' ' + eventType);
-//   })
-// })
-//
-// request({
-//   url: 'https://ie-pedestrian.run.aws-usw02-pr.ice.predix.io/v1/assets/1000000029/live-events?event-types=SFIN,SFOUT',
-//   method: 'GET',
-//   headers: {
-//     "authorization": auth,
-//     "predix-zone-id": zone
-//   }
-// }, function(err, resp, body){
-//   wsurl = JSON.parse(body).url;
-//   console.log(wsurl)
-//
-//   var headers = {
-//   "authorization": auth,
-//   "predix-zone-id": zone,
-//   "origin": "https://www.predix.io"
-//   };
-//
-//   var socket = new WebSocket(wsurl, {headers: headers});
-//
-//   socket.on('open', function(){
-//     console.log('socket open, asset 29');
-//   })
-//
-//   socket.on('message', function(data){
-//     var data = JSON.parse(data);
-//     var eventType = data["event-type"] == 'SFIN' ? 'Entering' : 'Exiting';
-//     console.log('Oakland: ' + data.measures[0].value + ' ' + eventType);
-//   })
-// })
 
 
 
