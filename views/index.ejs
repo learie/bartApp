@@ -12,7 +12,8 @@
   	<script src="js/module.states.js"></script>
     <script src="js/home.controller.js"></script>
   	<script src="js/dash.controller.js"></script>
-  	<script src="js/services.js"></script>
+    <script src="js/home.service.js"></script>
+  	<script src="js/dash.service.js"></script>
     
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
@@ -23,11 +24,13 @@
     <link rel='stylesheet' href='/css/style.css' />
   </head>
   <body ng-app="bartApp">
+  <nav>
     <ul class="nav nav-tabs">
       <li role="presentation" class="active"><a ui-sref="home">Home</a></li>
       <li role="presentation"><a ui-sref="dash">Dashboard</a></li>
       <!-- <li role="presentation"><a href="#">Messages</a></li> -->
     </ul>
+    </nav>
     <ui-view></ui-view>
   </body>
 </html>
