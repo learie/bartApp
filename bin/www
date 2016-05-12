@@ -94,7 +94,7 @@ io.on('connection', function(clientSocket) {
       var eventType = data["event-type"] == 'SFIN' ? 'Entering' : 'Exiting';
 
       clientSocket.emit('predix', {
-        station: 'Montgomery',
+        station: 'mont',
         people: data.measures[0].value,
         eventType: eventType
       });
@@ -130,7 +130,7 @@ io.on('connection', function(clientSocket) {
       // console.log('Embarcadero: ' + data.measures[0].value + ' ' + eventType);
 
       clientSocket.emit('predix', {
-        station: 'Embarcadero',
+        station: 'emba',
         people: data.measures[0].value,
         eventType: eventType
       });
@@ -166,7 +166,7 @@ io.on('connection', function(clientSocket) {
       // console.log('Oakland: ' + data.measures[0].value + ' ' + eventType);
 
       clientSocket.emit('predix', {
-        station: 'Oakland',
+        station: 'west',
         people: data.measures[0].value,
         eventType: eventType
       });

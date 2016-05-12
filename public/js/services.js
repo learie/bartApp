@@ -1,14 +1,56 @@
 (function(){
 	angular
 		.module('bartApp')
-		.service('HomeService', HomeService)
+		.service('MainService', MainService)
 		.factory('mySocket', mySocket)
 
-	HomeService.$inject = ['$http'];
+	MainService.$inject = ['$http'];
 
 
-	function HomeService($http){
-		// this.fetchData = return $http.get
+	function MainService($http){
+		this.data = {
+			mont: [
+				{
+					key: "Passengers",
+					y: 10
+				},{
+					key: "",
+					y: 90
+				}
+			],
+			emba: [
+				{
+					key: "Passengers",
+					y: 10
+				},{
+					key: "",
+					y: 90
+				}
+			],
+			west: [
+				{
+					key: "Passengers",
+					y: 10
+				},{
+					key: "",
+					y: 90
+				}
+			]
+		}
+
+		// this.data.mont = 10;
+		// this.data.emba = 10;
+		// this.data.west = 10;
+		this.updatePredix = (data) => {
+			if(data.eventType === 'Entering'){
+				this.data[data.station][0].y += data.people;
+				this.data[data.station][1].y -= data.people;
+			} else{
+				this.data[data.station][0].y -= data.people;
+				this.data[data.station][1].y += data.people;
+			}
+			
+		}
 	}
 
 	function mySocket(socketFactory){

@@ -10,7 +10,8 @@
     <script src="bower_components/angular-nvd3/dist/angular-nvd3.js"></script>
   	<script src="js/module.js"></script>
   	<script src="js/module.states.js"></script>
-  	<script src="js/home.controller.js"></script>
+    <script src="js/home.controller.js"></script>
+  	<script src="js/dash.controller.js"></script>
   	<script src="js/services.js"></script>
     
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
@@ -22,6 +23,11 @@
     <link rel='stylesheet' href='/css/style.css' />
   </head>
   <body ng-app="bartApp">
+    <ul class="nav nav-tabs">
+      <li role="presentation" class="active"><a ui-sref="home">Home</a></li>
+      <li role="presentation"><a ui-sref="dash">Dashboard</a></li>
+      <!-- <li role="presentation"><a href="#">Messages</a></li> -->
+    </ul>
     <ui-view></ui-view>
   </body>
 </html>

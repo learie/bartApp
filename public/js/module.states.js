@@ -12,6 +12,11 @@
 				templateUrl: '/html/home.html',
 				controller: 'HomeController'
 			})
+			.state('dash', {
+				url: '/dash',
+				templateUrl: '/html/dash.html',
+				controller: 'DashController'
+			})
 		$urlRouterProvider.otherwise('/');
 	}
 })();
