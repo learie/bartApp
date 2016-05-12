@@ -125,7 +125,7 @@
 	}
 
 	function mySocket(socketFactory){
-		var socket = io.connect('http://localhost:3000')
+		var socket = io.connect('http://e5203700.ngrok.io')
 		return socketFactory({
 			ioSocket: socket
 		});

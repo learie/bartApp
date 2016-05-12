@@ -63,115 +63,55 @@ io.on('connection', function(clientSocket) {
     });
   }, 6000);
 
+  function openPredixSocket(assetNum, stationName, url, auth, zone) {
+    request({
+      url: url,
+      headers: {
+        "authorization": auth,
+        "predix-zone-id": zone
+      }
+    }, function(err, resp, body){
+      if (err || !body) return console.log('error getting socket url for ' + assetNum);
+      wsurl = JSON.parse(body).url;
 
-  clientSocket.emit('predix', 'hello');
-  request({
-    url: 'https://ie-pedestrian.run.aws-usw02-pr.ice.predix.io/v1/assets/1000000027/live-events?event-types=SFIN,SFOUT',
-    method: 'GET',
-    headers: {
-      "authorization": auth,
-      "predix-zone-id": zone
-    }
-  }, function(err, resp, body){
-    wsurl = JSON.parse(body).url;
-    // console.log(wsurl)
+      var headers = {
+        "authorization": auth,
+        "predix-zone-id": zone,
+        "origin": "https://www.predix.io"
+      };
 
-    var headers = {
-    "authorization": auth,
-    "predix-zone-id": zone,
-    "origin": "https://www.predix.io"
-    };
+      var predixSocket = new WebSocket(wsurl, {headers: headers});
 
-    var predixSocket = new WebSocket(wsurl, {headers: headers});
+      predixSocket.on('open', function(){
+        console.log('socket for ' + assetNum + ' is open');
+      })
 
-    predixSocket.on('open', function(){
-      console.log('socket open, asset 27');
-    })
+      predixSocket.on('error', function(err){
+        console.log('error in socket ' + assetNum + ', err: ' + err);
+      })
 
-    predixSocket.on('message', function(data){
-      if (!data) return;
-      var data = JSON.parse(data);
-      var eventType = data["event-type"] == 'SFIN' ? 'Entering' : 'Exiting';
+      predixSocket.on('message', function(data){
+        if (!data) return;
+        console.log("Data received from " + assetNum)
+        var data = JSON.parse(data);
+        var eventType = data["event-type"] == 'SFIN' ? 'Entering' : 'Exiting';
+        var people = data["measures"][0]["value"];
 
-      clientSocket.emit('predix', {
-        station: 'mont',
-        people: data.measures[0].value,
-        eventType: eventType
-      });
-    })
-  })
+        clientSocket.emit('predix', {
+          station: stationName,
+          people: people,
+          eventType: eventType
+        });
+      })
+    });
+  }
 
-  request({
-    url: 'https://ie-pedestrian.run.aws-usw02-pr.ice.predix.io/v1/assets/1000000028/live-events?event-types=SFIN,SFOUT',
-    method: 'GET',
-    headers: {
-      "authorization": auth,
-      "predix-zone-id": zone
-    }
-  }, function(err, resp, body){
-    wsurl = JSON.parse(body).url;
-    console.log(wsurl)
-
-    var headers = {
-      "authorization": auth,
-      "predix-zone-id": zone,
-      "origin": "https://www.predix.io"
-    };
-
-    var predixSocket = new WebSocket(wsurl, {headers: headers});
-
-    predixSocket.on('open', function(){
-      console.log('socket open, asset 28');
-    })
-
-    predixSocket.on('message', function(data){
-      var data = JSON.parse(data);
-      var eventType = data["event-type"] == 'SFIN' ? 'Entering' : 'Exiting';
-      // console.log('Embarcadero: ' + data.measures[0].value + ' ' + eventType);
-
-      clientSocket.emit('predix', {
-        station: 'emba',
-        people: data.measures[0].value,
-        eventType: eventType
-      });
-    })
-  })
-
-  request({
-    url: 'https://ie-pedestrian.run.aws-usw02-pr.ice.predix.io/v1/assets/1000000029/live-events?event-types=SFIN,SFOUT',
-    method: 'GET',
-    headers: {
-      "authorization": auth,
-      "predix-zone-id": zone
-    }
-  }, function(err, resp, body){
-    wsurl = JSON.parse(body).url;
-    console.log(wsurl)
-
-    var headers = {
-    "authorization": auth,
-    "predix-zone-id": zone,
-    "origin": "https://www.predix.io"
-    };
-
-    var predixSocket = new WebSocket(wsurl, {headers: headers});
-
-    predixSocket.on('open', function(){
-      console.log('socket open, asset 29');
-    })
-
-    predixSocket.on('message', function(data){
-      var data = JSON.parse(data);
-      var eventType = data["event-type"] == 'SFIN' ? 'Entering' : 'Exiting';
-      // console.log('Oakland: ' + data.measures[0].value + ' ' + eventType);
-
-      clientSocket.emit('predix', {
-        station: 'west',
-        people: data.measures[0].value,
-        eventType: eventType
-      });
-    })
-  })
+  var asset27url = 'https://ie-pedestrian.run.aws-usw02-pr.ice.predix.io/v1/assets/1000000027/live-events?event-types=SFIN,SFOUT';
+  var asset28url = 'https://ie-pedestrian.run.aws-usw02-pr.ice.predix.io/v1/assets/1000000028/live-events?event-types=SFIN,SFOUT';
+  var asset29url = 'https://ie-pedestrian.run.aws-usw02-pr.ice.predix.io/v1/assets/1000000029/live-events?event-types=SFIN,SFOUT';
+  openPredixSocket('asset 27', 'mont', asset27url, auth, zone);
+  openPredixSocket('asset 28', 'emba', asset28url, auth, zone);
+  openPredixSocket('asset 29', 'west', asset29url, auth, zone);
 
 });
 
