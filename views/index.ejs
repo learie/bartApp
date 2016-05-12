@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+  	<script src="bower_components/angular/angular.js"></script>
+  	<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="/bower_components/angular-socket-io/socket.js"></script>
+  	<script src="bower_components/d3/d3.js"></script>
+    <script src="bower_components/nvd3/build/nv.d3.js"></script> <!-- or use another assembly -->
+    <script src="bower_components/angular-nvd3/dist/angular-nvd3.js"></script>
+  	<script src="js/module.js"></script>
+  	<script src="js/module.states.js"></script>
+  	<script src="js/home.controller.js"></script>
+  	<script src="js/services.js"></script>
+    
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="/bower_components/socket.io-client/socket.io.js"></script>
+
+
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/css/style.css' />
+  </head>
+  <body ng-app="bartApp">
+    <ui-view></ui-view>
+  </body>
+</html>

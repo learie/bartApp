@@ -1,0 +1,131 @@
+#!/usr/bin/env node
+
+/**
+ * Module dependencies.
+ */
+
+var app = require('../app');
+var debug = require('debug')('bartapi:server');
+var http = require('http');
+var request = require('request');
+
+
+var parser = require('xml2json');
+
+/**
+ * Get port from environment and store in Express.
+ */
+
+var port = normalizePort(process.env.PORT || '3000');
+app.set('port', port);
+
+/**
+ * Create HTTP server.
+ */
+
+var bartKey = 'QA4V-P9YD-9P7T-DWE9';
+var baseUrl = 'http://api.bart.gov/api/etd.aspx?cmd=etd&orig=';
+var stations = ['mont', 'embr', 'woak'];
+var i = 0;
+
+
+
+var server = http.createServer(app);
+var io = require('socket.io')(server);
+/**
+ * Listen on provided port, on all network interfaces.
+ */
+
+ io.on('connection', function(socket) {
+  console.log('new connection');
+
+  var requestLoop = setInterval(function(){
+  request({
+      url: baseUrl + stations[i] + '&key=' + bartKey,
+      method: "GET",
+      timeout: 10000,
+      followRedirect: false,
+      maxRedirects: 10
+    },function(error, response, body){
+        i === 2 ? i = 0 : i++;
+        if(!error){
+            var bodyP = JSON.parse(parser.toJson(body));
+            socket.emit('bartdata', bodyP);
+        }else{
+            console.log('error', error);
+        }
+    });
+}, 6000);
+
+
+
+  socket.on('hello', function(data){
+    console.log('in hello server: ', data);
+  })
+
+  socket.emit('bartdata', 'string as message');
+});
+
+server.listen(port);
+server.on('error', onError);
+server.on('listening', onListening);
+
+/**
+ * Normalize a port into a number, string, or false.
+ */
+
+function normalizePort(val) {
+  var port = parseInt(val, 10);
+
+  if (isNaN(port)) {
+    // named pipe
+    return val;
+  }
+
+  if (port >= 0) {
+    // port number
+    return port;
+  }
+
+  return false;
+}
+
+/**
+ * Event listener for HTTP server "error" event.
+ */
+
+function onError(error) {
+  if (error.syscall !== 'listen') {
+    throw error;
+  }
+
+  var bind = typeof port === 'string'
+    ? 'Pipe ' + port
+    : 'Port ' + port;
+
+  // handle specific listen errors with friendly messages
+  switch (error.code) {
+    case 'EACCES':
+      console.error(bind + ' requires elevated privileges');
+      process.exit(1);
+      break;
+    case 'EADDRINUSE':
+      console.error(bind + ' is already in use');
+      process.exit(1);
+      break;
+    default:
+      throw error;
+  }
+}
+
+/**
+ * Event listener for HTTP server "listening" event.
+ */
+
+function onListening() {
+  var addr = server.address();
+  var bind = typeof addr === 'string'
+    ? 'pipe ' + addr
+    : 'port ' + addr.port;
+  debug('Listening on ' + bind);
+}
