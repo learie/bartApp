@@ -15,7 +15,7 @@
 			EMBR: undefined,
 			WOAK: undefined
 		};
-		
+
 		mySocket.emit('hello');
 
 		mySocket.on('bartdata', function(data){
@@ -46,21 +46,14 @@
 		$scope.options = {
             chart: {
                 type: 'pieChart',
-                height: 500,
+                // height: 500,
                 x: function(d){return d.key;},
                 y: function(d){return d.y;},
                 showLabels: false,
+								showLegend: false,
                 duration: 500,
-                labelThreshold: 0.01,
-                labelSunbeamLayout: true,
-                legend: {
-                    margin: {
-                        top: 5,
-                        right: 35,
-                        bottom: 5,
-                        left: 0
-                    }
-                }
+                // labelThreshold: 0.01,
+                labelSunbeamLayout: true
             }
         };
         $scope.data = MainService.data;

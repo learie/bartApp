@@ -1,29 +1,68 @@
 <div class="container maxh">
 
-	<h2>Montgomery</h2>
-	<h4 ng-show="nextTrain.MONT">Next Train: Headed to {{nextTrain.MONT.train}}, will be arriving in {{nextTrain.MONT.estimate}}</h4>
-
 	<div class="row">
-		<div class="col-xs-4"><nvd3 options="options" data="data.mont.A"></nvd3></div>
-		<div class="col-xs-4"><nvd3 options="options" data="data.mont.B"></nvd3></div>
-		<div class="col-xs-4"><nvd3 options="options" data="data.mont.C"></nvd3></div>
+		<h1>Montgomery</h1>
+		<h4 ng-hide="nextTrain.MONT" class="text-muted">Waiting for train schedule data...</h4>
+		<h4 ng-show="nextTrain.MONT" class="text-primary">Next Train: Headed to {{nextTrain.MONT.train}}, will be arriving in {{nextTrain.MONT.estimate}}</h4>
+
+		<div class="col-xs-4">
+			<h4 class="text-center">Car 1</h4>
+			<nvd3 options="options" data="data.mont.A"></nvd3>
+			<h4 class="text-center">{{data.mont.A[0].y}} Passengers</h4>
+		</div>
+		<div class="col-xs-4">
+			<h4 class="text-center">Car 2</h4>
+			<nvd3 options="options" data="data.mont.B"></nvd3>
+			<h4 class="text-center">{{data.mont.B[0].y}} Passengers</h4>
+		</div>
+		<div class="col-xs-4">
+			<h4 class="text-center">Car 3</h4>
+			<nvd3 options="options" data="data.mont.C"></nvd3>
+			<h4 class="text-center">{{data.mont.C[0].y}} Passengers</h4>
+		</div>
 	</div>
 
-	<h2>Embarcadero</h2>
-	<h4 ng-show="nextTrain.EMBR">Next Train: Headed to {{nextTrain.EMBR.train}}, will be arriving in {{nextTrain.EMBR.estimate}}</h4>
-
 	<div class="row">
-		<div class="col-xs-4"><nvd3 options="options" data="data.emba.A"></nvd3></div>
-		<div class="col-xs-4"><nvd3 options="options" data="data.emba.B"></nvd3></div>
-		<div class="col-xs-4"><nvd3 options="options" data="data.emba.C"></nvd3></div>
+		<h1>Embarcadero</h1>
+		<h4 ng-hide="nextTrain.EMBR" class="text-muted">Waiting for train schedule data...</h4>
+		<h4 ng-show="nextTrain.EMBR" class="text-primary">Next Train: Headed to {{nextTrain.EMBR.train}}, will be arriving in {{nextTrain.EMBR.estimate}}</h4>
+
+		<div class="col-xs-4">
+			<h4 class="text-center">Car 1</h4>
+			<nvd3 options="options" data="data.emba.A"></nvd3>
+			<h4 class="text-center">{{data.emba.A[0].y}} Passengers</h4>
+		</div>
+		<div class="col-xs-4">
+			<h4 class="text-center">Car 2</h4>
+			<nvd3 options="options" data="data.emba.B"></nvd3>
+			<h4 class="text-center">{{data.emba.B[0].y}} Passengers</h4>
+		</div>
+		<div class="col-xs-4">
+			<h4 class="text-center">Car 3</h4>
+			<nvd3 options="options" data="data.emba.C"></nvd3>
+			<h4 class="text-center">{{data.emba.C[0].y}} Passengers</h4>
+		</div>
 	</div>
 
-	<h2>West Oakland</h2>
-	<h4 ng-show="nextTrain.WOAK">Next Train: Headed to {{nextTrain.WOAK.train}}, will be arriving in {{nextTrain.WOAK.estimate}}</h4>
-	
 	<div class="row">
-		<div class="col-xs-4"><nvd3 options="options" data="data.west.A"></nvd3></div>
-		<div class="col-xs-4"><nvd3 options="options" data="data.west.B"></nvd3></div>
-		<div class="col-xs-4"><nvd3 options="options" data="data.west.C"></nvd3></div>
+		<h1>West Oakland</h1>
+		<h4 ng-hide="nextTrain.WOAK" class="text-muted">Waiting for train schedule data...</h4>
+		<h4 ng-show="nextTrain.WOAK" class="text-primary">Next Train: Headed to {{nextTrain.WOAK.train}}, will be arriving in {{nextTrain.WOAK.estimate}}</h4>
+
+		<div class="col-xs-4">
+			<h4 class="text-center">Car 1</h4>
+			<nvd3 options="options" data="data.west.A"></nvd3>
+			<h4 class="text-center">{{data.west.A[0].y}} Passengers</h4>
+		</div>
+		<div class="col-xs-4">
+			<h4 class="text-center">Car 2</h4>
+			<nvd3 options="options" data="data.west.B"></nvd3>
+			<h4 class="text-center">{{data.west.B[0].y}} Passengers</h4>
+		</div>
+		<div class="col-xs-4">
+			<h4 class="text-center">Car 3</h4>
+			<nvd3 options="options" data="data.west.C"></nvd3>
+			<h4 class="text-center">{{data.west.C[0].y}} Passengers</h4>
+		</div>
 	</div>
 </div>

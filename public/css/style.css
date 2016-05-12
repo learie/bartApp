@@ -2,6 +2,7 @@
 body {
     background: #1f1f1f;
     font-family: 'Open Sans', sans-serif;
+    color: white
 }
 
 h1 {
@@ -11,6 +12,7 @@ h1 {
 h3,h4 , h5 {
     font-family: 'Open Sans', sans-serif;
     font-weight: lighter;
+    color: #AEC7E8;
 }
 
 h2 {
@@ -19,7 +21,6 @@ h2 {
 
 h3 {
     font-size: 46px;
-    color: #b2c831
 }
 
 h5 {
@@ -130,7 +131,7 @@ h5 {
 }
 
 
-/**********Half-Unit / Used in index.html**********/   
+/**********Half-Unit / Used in index.html**********/
 .half-unit {
     margin-bottom: 30px;
     padding-bottom: 4px;
@@ -195,7 +196,7 @@ h5 {
     vertical-align: middle;
 }
 
-/**********Styling Elements**********/   
+/**********Styling Elements**********/
 .cont {
     text-align: center;
     margin-top: 30px;
@@ -333,7 +334,7 @@ textarea {
     vertical-align: text-bottom
 }
 
-/**********Clock Configuration**********/   
+/**********Clock Configuration**********/
 
 digiclock {
     font-size: 30px;
@@ -348,7 +349,7 @@ digiclock {
 }
 
 
-/**********Mail Style Configuration**********/   
+/**********Mail Style Configuration**********/
 
 .framemail {
     cursor: default;
@@ -739,14 +740,14 @@ ul#jstwitter li a {
 }
 
 
-/**********Gauge Chart**********/   
+/**********Gauge Chart**********/
 #canvas {
     display: block;
     width: 150px;
     margin: 30px auto;
 }
 
-/**********Accordion Styling**********/   
+/**********Accordion Styling**********/
 
 .accordion-group {
     border: 1px solid #222;
@@ -767,7 +768,7 @@ ul#jstwitter li a {
     *
 }
 
-/**********Link Styling**********/   
+/**********Link Styling**********/
 a {
     color: #b2c831;
     text-decoration: none;
@@ -780,7 +781,7 @@ a:hover {
 
 
 
-/**********FooterWrap Section**********/   
+/**********FooterWrap Section**********/
 #footerwrap {
     width: 100%;
     background: #262626;
@@ -796,7 +797,7 @@ a:hover {
 #footerwrap p {
     color: white;
     font-size: 12px;
-} 
+}
 
 
 /***********FULLCALENDAR STYLE***********/
@@ -843,7 +844,7 @@ a:hover {
 }
 
 
-/**********Media Styles**********/   
+/**********Media Styles**********/
 
 @media (max-width: 360px) {
 /*Calendar Adsjustments*/
@@ -882,4 +883,4 @@ a:hover {
     .info-aapl ul {
         margin-left: 40%;
     }
-} 
+}
