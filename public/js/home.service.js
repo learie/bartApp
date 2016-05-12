@@ -15,7 +15,7 @@
 							key: "Passengers",
 							y: 40
 						},{
-							key: "",
+							key: "Available",
 							y: 60
 						}
 					],
@@ -24,7 +24,7 @@
 							key: "Passengers",
 							y: 40
 						},{
-							key: "",
+							key: "Available",
 							y: 60
 						}
 					],
@@ -33,7 +33,7 @@
 							key: "Passengers",
 							y: 40
 						},{
-							key: "",
+							key: "Available",
 							y: 60
 						}
 					]
@@ -44,7 +44,7 @@
 							key: "Passengers",
 							y: 40
 						},{
-							key: "",
+							key: "Available",
 							y: 60
 						}
 					],
@@ -53,7 +53,7 @@
 							key: "Passengers",
 							y: 40
 						},{
-							key: "",
+							key: "Available",
 							y: 60
 						}
 					],
@@ -62,7 +62,7 @@
 							key: "Passengers",
 							y:40
 						},{
-							key: "",
+							key: "Available",
 							y: 60
 						}
 					]
@@ -73,7 +73,7 @@
 							key: "Passengers",
 							y: 40
 						},{
-							key: "",
+							key: "Available",
 							y: 60
 						}
 					],
@@ -82,7 +82,7 @@
 							key: "Passengers",
 							y: 40
 						},{
-							key: "",
+							key: "Available",
 							y: 60
 						}
 					],
@@ -91,7 +91,7 @@
 							key: "Passengers",
 							y: 40
 						},{
-							key: "",
+							key: "Available",
 							y: 60
 						}
 					]
@@ -120,7 +120,7 @@
 				this.data[data.station].C[0].y -= pushees.C;
 				this.data[data.station].C[1].y += pushees.C;
 			}
-			
+
 		}
 	}
 
